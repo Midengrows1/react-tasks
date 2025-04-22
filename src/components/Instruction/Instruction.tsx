@@ -23,7 +23,8 @@ const Instruction = () => {
         setLastStep(true);
         break;
       default:
-        setFirstStep(false), setLastStep(false);
+        setFirstStep(false);
+        setLastStep(false);
     }
   }, [activeIndex]);
   const goToPrev = () => {

@@ -80,3 +80,7 @@
 .steps-item.active .steps-item-button {
   font-weight: bold;
 }
+
+.steps-item.done .steps-item-button {
+  background: rgb(86, 179, 86);
+}

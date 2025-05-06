@@ -1,35 +1,35 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import s from './App.module.css';
 import Instruction from './components/Instruction/Instruction';
-type TValue = string | null;
-interface IList {
-  id: number;
-  value: TValue;
-}
+// type TValue = string | null;
+// interface IList {
+//   id: number;
+//   value: TValue;
+// }
 function App() {
-  const [value, setValue] = useState<TValue>('');
-  const [list, setList] = useState<IList[] | []>([]);
-  const [error, setError] = useState<string>('');
-  const isValueVaild = !error && value;
-  const onInputButtonClick = () => {
-    const requestValue: string | null = prompt('Введите значение');
-    if (requestValue && requestValue.length < 3) {
-      setError('Введенное значение должно содержать минимум 3 символа');
-    } else {
-      setValue(requestValue);
-      setError('');
-    }
-  };
-  const onAddButtonClick = () => {
-    setList((prevData) => [
-      ...prevData,
-      { id: prevData.length + 1, value: value },
-    ]);
-    setValue('');
-  };
+  // const [value, setValue] = useState<TValue>('');
+  // const [list, setList] = useState<IList[] | []>([]);
+  // const [error, setError] = useState<string>('');
+  // const isValueVaild = !error && value;
+  // const onInputButtonClick = () => {
+  //   const requestValue: string | null = prompt('Введите значение');
+  //   if (requestValue && requestValue.length < 3) {
+  //     setError('Введенное значение должно содержать минимум 3 символа');
+  //   } else {
+  //     setValue(requestValue);
+  //     setError('');
+  //   }
+  // };
+  // const onAddButtonClick = () => {
+  //   setList((prevData) => [
+  //     ...prevData,
+  //     { id: prevData.length + 1, value: value },
+  //   ]);
+  //   setValue('');
+  // };
   return (
     <div className={s.appContainer}>
-      <div className={s.app}>
+      {/* <div className={s.app}>
         <h1 className={s['page-heading']}>Ввод значения</h1>
         <p className={s['no-margin-text']}>
           Текущее значение <code>value</code>: "
@@ -62,8 +62,8 @@ function App() {
             )}
           </ul>
         </div>
-      </div>
-      {/* <Instruction /> */}
+      </div> */}
+      <Instruction />
     </div>
   );
 }

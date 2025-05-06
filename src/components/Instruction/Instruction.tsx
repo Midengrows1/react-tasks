@@ -1,32 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './instraction.module.css';
 import data from '../data.json';
 const Instruction = () => {
-  console.log(data);
   const [steps] = useState(data);
-  const [activeIndex, setActiveIndex] = useState<number>(1);
-  const [firstStep, setFirstStep] = useState<boolean>(true);
-  const [lastStep, setLastStep] = useState<boolean>(false);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const firstStep = activeIndex === 0;
+  const lastStep = activeIndex === steps.length - 1;
   const goToNext = () => {
-    if (activeIndex === 7) {
-      setActiveIndex(1);
+    if (activeIndex === steps.length - 1) {
+      setActiveIndex(0);
     } else {
       setActiveIndex((prevIndex) => prevIndex + 1);
     }
   };
-  useEffect(() => {
-    switch (activeIndex) {
-      case 1:
-        setFirstStep(true);
-        break;
-      case 7:
-        setLastStep(true);
-        break;
-      default:
-        setFirstStep(false);
-        setLastStep(false);
-    }
-  }, [activeIndex]);
+
   const goToPrev = () => {
     setActiveIndex((prevIndex) => prevIndex - 1);
   };
@@ -36,7 +23,7 @@ const Instruction = () => {
         <h1>Инструкция по готовке пельменей</h1>
         <div className={styles.steps}>
           <div className={styles['steps-content']}>
-            {steps[activeIndex - 1]['content']}
+            {steps[activeIndex]['content']}
           </div>
           <ul className={styles['steps-list']}>
             {steps.map((step, index) => {
@@ -44,8 +31,8 @@ const Instruction = () => {
                 <li
                   key={step.id}
                   className={`${styles['steps-item']}  ${
-                    activeIndex === index + 1 ? `${styles.active}` : ''
-                  } ${index < activeIndex && styles.done}`}
+                    activeIndex === index ? `${styles.active}` : ''
+                  } ${index < activeIndex ? styles.done : ''}`}
                 >
                   <button
                     className={styles['steps-item-button']}
